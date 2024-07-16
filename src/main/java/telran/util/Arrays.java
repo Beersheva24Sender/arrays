@@ -55,26 +55,18 @@ public class Arrays {
         }
     }
 
-    public static int binarySearch(int[] array, int key) {
+    public static int binarySearch(int[] ar, int key) {
         int left = 0;
-        int right = array.length - 1;
+        int right = ar.length - 1;
         int middle = (left + right) / 2;
-
-        while (middle != right && middle != left) {
-            if (array[middle] == key) {
-                return middle;
-            } else if (array[left] == key) {
-                return left;
-            } else if (array[right] == key) {
-                return right;
-            } else if (key < array[middle]) {
-                right = middle;
-                middle = (left + right) / 2;
+        while (left <= right && ar[middle] != key) {
+            if (key < ar[middle]) {
+                right = middle - 1;
             } else {
-                left = middle;
-                middle = (left + right) / 2;
+                left = middle + 1;
             }
+            middle = (left + right) / 2;
         }
-        return -1;
+        return left > right ? -(left + 1) : middle;
     }
 }

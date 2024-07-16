@@ -86,18 +86,14 @@ public class ArrayTest {
 
     @Test
     void binarySearchTest() {
-        int[] array = { -4, 0, 3, 10, 12, 13, 14, 15, 16, 17 };
-
-        // if the key exists in the array
-        assertEquals(0, binarySearch(array, -4));
-        assertEquals(1, binarySearch(array, 0));
-        assertEquals(3, binarySearch(array, 10));
-        assertEquals(7, binarySearch(array, 15));
-        assertEquals(9, binarySearch(array, 17));
-
-        // if the key does not exist in the array
-        int key = -1;
-        int index = -1;
-        assertEquals(index, binarySearch(array, key));
+    int [] arSorted = {10, 20, 30, 40, 50};
+    //existing keys
+    assertEquals(0, binarySearch(arSorted, 10));
+    assertEquals(4, binarySearch(arSorted, 50));
+    assertEquals(2, binarySearch(arSorted, 30));
+    //not existing keys
+    assertEquals(-1, binarySearch(arSorted, 5));
+    assertEquals(-3, binarySearch(arSorted, 25));
+    assertEquals(-6, binarySearch(arSorted, 55));
     }
 }
