@@ -2,6 +2,8 @@ package telran.util.test;
 
 import org.junit.jupiter.api.Test;
 
+import telran.util.CharacterRule;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static telran.util.Arrays.*;
 
@@ -180,5 +182,14 @@ public class ArraysTest {
         Integer[] array = { 7, -8, 10, -100, 13, -10, 99 };
         Integer[] expected = { 7, 13, 99 };
         assertArrayEquals(expected, find(array, new OddNumbersPredicate()));
+    }
+
+    @Test
+    void testRemoveIf() {
+        Integer[] array = { 7, -8, 10, -100, 13, -10, 99 };
+        Integer[] expected = { -8, 10, -100, -10 };
+        Integer[] actual = removeIf(array, n -> n % 2 != 0);
+        assertArrayEquals(expected, actual);
+
     }
 }
