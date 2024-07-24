@@ -228,9 +228,26 @@ public class Arrays {
         return result;
     }
 
-    public static <T> T[] removeIf(T[] array, Predicate<T> predicate) {
-        // TODO
-        // using oneline
-        return null;
+    public static <T> T[] removeIf (T[] array, Predicate<T> predicate){
+        return find(array, predicate.negate());
+    }
+
+    public static String matchesRules(char[] chars,
+            CharacterRule[] mustBeRules, CharacterRule[] mustNotBeRule) {
+        StringBuilder errorMessages = new StringBuilder();
+        for (char character : chars) {
+            for (CharacterRule rule : mustBeRules) {
+                if (rule.flag && !rule.predicate.test(character)) {
+                    errorMessages.append(rule.errorMessage).append("\n");
+                }
+            }
+            for (CharacterRule rule : mustNotBeRule) {
+                if (rule.flag && rule.predicate.test(character)) {
+                    errorMessages.append(rule.errorMessage).append("\n");
+                }
+            }
+        }
+
+        return errorMessages.toString();
     }
 }
